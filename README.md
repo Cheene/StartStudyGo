@@ -1,1 +1,1 @@
-# StartStudyGo
+# startstudygo
