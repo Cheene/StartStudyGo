@@ -36,7 +36,7 @@ func f4() (x int) {
 
 func f6() (x int) {
 	defer func(x *int) {
-		*x++
+		(*x)++
 	}(&x) //函数传参传的是函数的副本
 	return 5
 }
