@@ -2,6 +2,9 @@ package main
 
 import "fmt"
 
+//标识符
+// Go语言中如果标识符首字母是大写的，就表示对外包可见的，公有的
+//dog 这是一个狗的结构体
 type dog struct {
 	name string
 }
