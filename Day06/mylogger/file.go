@@ -57,14 +57,62 @@ func (f *FileLogger) initFIle() error {
 	return err
 }
 
-func (f FileLogger) log(lv LogLevel, format string, a ...interface{}) {
+//如果文件大小大于最大值，就要返回 true
+func (f *FileLogger) checkSize(file *os.File) bool {
+	fileinfo, err := file.Stat()
+
+	if err != nil {
+		fmt.Printf("fileInfo is  %v", err)
+		return false
+	}
+	return uint64(fileinfo.Size()) >= f.maxFileSize
+}
+func (f *FileLogger) splitLogFile(file *os.File) (*os.File, error) {
+	//获取文件名
+	fileInfo, err := file.Stat()
+
+	if err != nil {
+		fmt.Printf("get file info failed,%v ", err)
+		return nil, err
+	}
+	now := time.Now().Format("20060102150405000")
+	logName := path.Join(f.filePath, fileInfo.Name())   //获取日志完整路径
+	logNewName := fmt.Sprintf("%s.bak%s", logName, now) //拼接一个日志备份的名字
+	//1.关闭当前的日志文件
+	file.Close()
+	//2.备份当前的文件 rename
+	os.Rename(logName, logNewName)
+	//3.打开一个新的文件对象并重新赋值给obj
+	fileObj, err := os.OpenFile(logName, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		fmt.Printf("Error Open File: %v\n", err)
+		return nil, err
+	}
+	return fileObj, err
+}
+func (f *FileLogger) log(lv LogLevel, format string, a ...interface{}) {
 	if f.enable(lv) {
 		msg := fmt.Sprintf(format, a...) //拼接 format 和 参数
 		now := time.Now()
 		funcName, fileName, lineNo := getInfo(3)
+		//需要进行切割日志文件
+		if f.checkSize(f.fileObj) {
+			newFile, err := f.splitLogFile(f.fileObj)
+			if err != nil {
+				return
+			}
+			f.fileObj = newFile
+		}
 		fmt.Fprintf(f.fileObj, "[%s] [%s] [%s:%s:%d] %s\n", now.Format("2006-01-02 15:04:05"), getLogString(lv), fileName, funcName, lineNo, msg)
 		//如果要记录的日志的级别大于或等于ERROR，便在 ERROR 文件中再记录一遍
 		if lv >= ERROR {
+			if f.checkSize(f.errFileObj) {
+				newErrorFile, err := f.splitLogFile(f.errFileObj)
+				if err != nil {
+					return
+				}
+				f.errFileObj = newErrorFile
+			}
 			fmt.Fprintf(f.errFileObj, "[%s] [%s] [%s:%s:%d] %s\n", now.Format("2006-01-02 15:04:05"), getLogString(lv), fileName, funcName, lineNo, msg)
 		}
 	}

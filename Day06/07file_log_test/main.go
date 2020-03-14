@@ -3,7 +3,6 @@ package main
 import (
 	"../mylogger"
 	"fmt"
-	"time"
 )
 
 func main() {
@@ -15,10 +14,6 @@ func main() {
 		log.Debug("This is Error %d", i)
 		log.Trace("This is Error %d", i)
 		log.Fatal("This is Error %d", i)
-		i++
-		time.Sleep(2 * time.Second)
-		fmt.Println(i)
-
 	}
 
 }
