@@ -34,5 +34,4 @@ func main() {
 		return
 	}
 	fmt.Println("Copy done!")
-
 }

@@ -47,7 +47,8 @@ type Logger struct {
 	Level LogLevel
 }
 
-// NeewLog 构造函数
+// NewLog 构造函数
+// 1 字符串转level；2 构造一个Logger
 func NewLog(levelStr string) Logger {
 	level, err := parseLogLevel(levelStr)
 	if err != nil {
