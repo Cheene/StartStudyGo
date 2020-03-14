@@ -43,21 +43,19 @@ func parseLogLevel(s string) (LogLevel, error) {
 }
 
 // Logger 日志对象
-type Logger struct {
-	Level LogLevel
+
+//日志的结构体
+type Logger interface {
+	Debug(format string, a ...interface{})
+	Trace(format string, a ...interface{})
+	Warning(format string, a ...interface{})
+	Info(format string, a ...interface{})
+	Fatal(format string, a ...interface{})
+	Error(format string, a ...interface{})
 }
 
 // NewLog 构造函数
 // 1 字符串转level；2 构造一个Logger
-func NewLog(levelStr string) Logger {
-	level, err := parseLogLevel(levelStr)
-	if err != nil {
-		panic(err)
-	}
-	return Logger{
-		Level: level,
-	}
-}
 
 func getInfo(n int) (funcName, fileName string, lineNo int) {
 	//file 调用这个函数的是谁，line是行数

@@ -2,8 +2,10 @@ package main
 
 import (
 	"../mylogger"
-	"fmt"
 )
+
+//声明一个全局的接口变量
+var log mylogger.Logger
 
 func main() {
 	log := mylogger.NewFileLogger("DEBUG", "./", "chenen.log", 10*1024*1024)
