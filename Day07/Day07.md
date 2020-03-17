@@ -41,5 +41,13 @@ time
 
 并发
 goutine
+`goroutine` 什么时候结束？
+
+对应的函数结束的时候，goroutine就结束了
+
+`main` 函数执行完了，由`main` 函数创建的那些 `goroutine` 也结束了
+
+
+
 channel
 sync
