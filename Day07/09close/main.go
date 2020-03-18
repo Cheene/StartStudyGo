@@ -14,7 +14,7 @@ func main() {
 	for x := range ch1 {
 		fmt.Println(x)
 	}
-	//对已经关闭的通道进行重新赋值是可以的。
+	//对已经关闭的通道进行重新读取是可以的。
 	x, ok := <-ch1
 	fmt.Println(x, ok)
 
