@@ -12,7 +12,8 @@ import (
 var wg sync.WaitGroup
 var once sync.Once
 
-func f1(ch1 chan int) {
+// chan<- 代表着只能向通道中发送值，
+func f1(ch1 chan<- int) {
 	defer wg.Done()
 	for i := 0; i < 100; i++ {
 		ch1 <- i
@@ -20,10 +21,11 @@ func f1(ch1 chan int) {
 	close(ch1)
 }
 
-func f2(ch1, ch2 chan int) {
+//ch1仅能取值，ch2仅能放值
+func f2(ch1 <-chan int, ch2 chan<- int) {
 	defer wg.Done()
 
-	//for x := range ch1{ 这样或产生错误
+	//for x := range ch1{ 这样或产生错误，因为 ch1 还不一定能够生成成功。
 	//
 	//}
 

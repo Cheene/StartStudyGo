@@ -20,6 +20,7 @@ func noBufferChannel() {
 	a = make(chan int) // 不带缓冲区通道
 	wg.Add(1)
 	//a <- 10 // 卡住了，没有接的
+	//为什么没有接的？？
 	go func() {
 		defer wg.Done()
 		//只有把值放进去的时候，才把值取出来
