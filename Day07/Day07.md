@@ -40,14 +40,31 @@ time
 ###今日内容
 
 并发
-goutine
+gorutine
 `goroutine` 什么时候结束？
 
 对应的函数结束的时候，goroutine就结束了
 
 `main` 函数执行完了，由`main` 函数创建的那些 `goroutine` 也结束了
 
+`goroutine` 调度模型
 
 
-channel
+#### channel
+并发模型是 CSP，提倡通过通信共享内存而不是共享内存实现通信
+
+var 变量名 chan 类型
+##### 通道的操作
+`<-`
+箭头表示数据流动的方向
+
+1 发送 `ch <- 1`
+
+2 接收 `ret := <- ch`
+
+3 关闭 `close()`
+
+
+
+
 sync
