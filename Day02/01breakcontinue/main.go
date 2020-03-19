@@ -29,7 +29,7 @@ func main() {
 			}
 			fmt.Printf("%d:%d \n", i, j)
 		}
-		if flag {
+		if flag { //等价于在外层的循环处做判断
 			break
 		}
 	}

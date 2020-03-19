@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-// 明明返回值就相当于在函数中声明了一个int类型的变量
+// ret 返回值就相当于在函数中声明了一个int类型的变量
 func add(a int, b int) (ret int) {
 	return a + b
 }
@@ -27,7 +27,7 @@ func f6(x, y string) string {
 	return x + "" + y
 }
 
-// 可变长参数
+// 可变长参数 第一个参数是 string，接下来所有的参数都是 int 类型
 func f7(x string, y ...int) {
 	fmt.Println(x)
 	fmt.Println(y)

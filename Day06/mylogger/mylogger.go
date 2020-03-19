@@ -43,7 +43,6 @@ func parseLogLevel(s string) (LogLevel, error) {
 }
 
 // Logger 日志对象
-
 //日志的结构体
 type Logger interface {
 	Debug(format string, a ...interface{})

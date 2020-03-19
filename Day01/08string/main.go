@@ -27,7 +27,7 @@ func main() {
 	name := "china"
 	word := "I lova"
 	fmt.Println(name + " " + word)
-	// Sprintf
+	// Sprintf,保存格式化的参数到变量中
 	ss1 := fmt.Sprintf("%s %s", s, word)
 	fmt.Println(ss1)
 	//字符串的分割
@@ -36,13 +36,14 @@ func main() {
 	//包含
 	fmt.Println(strings.Contains(s2, "诗"))
 	//测试前缀或者后缀以某个字符串结束
+	// 前缀
 	fmt.Println(strings.HasPrefix(s2, "古诗"))
+	// 后缀
 	fmt.Println(strings.HasSuffix(s2, "花易落"))
-
 	//
 	s4 := "abcdef"
-	fmt.Println(strings.Index(s4, "b"))
-	fmt.Println(strings.LastIndex(s4, "c"))
+	fmt.Println("A: ", strings.Index(s4, "b"))
+	fmt.Println(strings.LastIndex(s4, "f"))
 
 	for _, c := range s2 {
 		fmt.Printf("%c \n", c)
@@ -54,7 +55,7 @@ func main() {
 	// s22[0] = "红" Error
 	s3 := []rune(s22) // 强制转换成切片的类型
 	s3[0] = '红'
-	fmt.Println(string(s3))
+	fmt.Println(string(s3)) // 红萝卜
 	// 字符串与字符的区别
 	c3 := 'H'
 	c4 := "H"

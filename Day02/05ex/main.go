@@ -15,11 +15,11 @@ import (
 func main() {
 	str := "how do you do"
 
-	slice := strings.Split(str, " ")
-	fmt.Println(slice)
-	mapSlic := make(map[string]int, len(slice))
+	splitStr := strings.Split(str, " ")
+	fmt.Println(splitStr)
+	mapSlic := make(map[string]int, len(splitStr))
 
-	for _, value := range slice {
+	for _, value := range splitStr {
 		t, ok := mapSlic[value]
 
 		if !ok {

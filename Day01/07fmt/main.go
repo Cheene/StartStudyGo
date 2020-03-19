@@ -16,5 +16,5 @@ func main() {
 
 	fmt.Printf("字符串： %s\n", s)
 	fmt.Printf("字符串： %v\n", s)
-	fmt.Printf("字符串： %#v\n", s)
+	fmt.Printf("字符串： %#v\n", s) // 带 # 添加引号
 }
