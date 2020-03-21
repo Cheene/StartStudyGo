@@ -21,9 +21,9 @@ func f2() (x int) {
 }
 
 func f3() (y int) {
-	x := 5 // 第一步 返回值 y = x = 5
+	x := 5 // 第一步 返回值 y = x = 5，此时 y的值是 x 的拷贝
 	defer func() {
-		x++ // 第二步，修改x
+		x++ // 第二步，修改x，但不会修改 y 的值
 	}()
 	return x // 返回 y的值
 }
@@ -37,15 +37,15 @@ func f4() (x int) {
 func f6() (x int) {
 	defer func(x *int) {
 		(*x)++
-	}(&x) //函数传参传的是函数的副本
+	}(&x) //函数传参传的是指针，是存储X的地址值
 	return 5
 }
 
 func main() {
-	fmt.Println(f1()) // 5, x = 6
-	fmt.Println(f2()) // 重点
-	fmt.Println(f3()) // 5, x = 6
-	fmt.Println(f4()) // 5, x = 6
-	fmt.Println(f6()) // 5, x = 6
+	fmt.Println("f1(): ", f1()) // 5, x = 6
+	fmt.Println("f2(): ", f2()) // 重点
+	fmt.Println("f3(): ", f3()) // 5, x = 6
+	fmt.Println("f4(): ", f4()) // 5, x = 6
+	fmt.Println("f6(): ", f6()) // 5, x = 6
 
 }

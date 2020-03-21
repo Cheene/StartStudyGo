@@ -2,6 +2,10 @@ package main
 
 import "fmt"
 
+// 1 f1 里面只有一个参数；即 func()类型
+// 2 在 f1 里面执行函数 ff3
+// 3 把 ff3 的结果返回
+
 //闭包,
 //1 类型不匹配的函数
 func f1(f func()) {

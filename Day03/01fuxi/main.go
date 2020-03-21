@@ -28,13 +28,16 @@ func main() {
 	//数组时值类型
 	x := [3]int{0, 1, 3}
 	fmt.Println(x)
+	//向函数中传递的是一个副本
 	f1(x) // 仍然是123 ，Go语言中的幻术传递的都是值
+
 	fmt.Println(x)
 
-	y := x
-	y[1] = 100
+	y := x         // y 初始化的时候仍然是 x 的副本，
+	y[1] = 100     //修改 y 的数值对 x 并不会由任何的影响
 	fmt.Println(x) // y 是 X 的副本，x 不会变
 	// 切片是引用类型，底层是数组存值，切片本身并不存储数值。
+	// 切片的底层是数组，只有数组存储值，而切片存储
 	// 关于切片 slice: 仅能装相同的元素
 	var s1 []int
 	fmt.Println(s1)        // [] 本质上是 nil ,并没有分配内存，即
@@ -46,14 +49,14 @@ func main() {
 	fmt.Println(s2 == nil)
 	fmt.Println(s2)
 	// false;
-	s3 := make([]int, 0, 4) // 4 是底层数组的长度。0是切片本身的长度。长度小于容量；指针是指向数组的首位置
-	fmt.Println(s3 == nil)
+	s3 := make([]int, 0, 4)               // 4 是底层数组的长度。0是切片本身的长度。长度小于容量；指针是指向数组的首位置
+	fmt.Println("s3 == nil? ", s3 == nil) // 初始化后一定有一个指针指向内存地址，底层数组的容量是4，切片本身的长度为0 而已
 	// 切片的赋值与拷贝
 
 	ss1 := []int{1, 2, 3} // [1,2,3]
 	ss2 := ss1            // [1,2,3]
 	fmt.Println(ss2)
-	// 切片不存值，类似于指针指向同一个内存首地址
+	// 切片不存储值，类似于指针指向同一个内存首地址
 	ss2[1] = 200
 	fmt.Println(ss1) // [1,200,3]
 	fmt.Println(ss2) // [1,200,3]
@@ -71,7 +74,7 @@ func main() {
 	//var s4 = make([]int,0,3)//长度是0 []
 	var s4 = make([]int, 3, 3) //这里是值传递
 	s5 := s1
-	copy(s4, s1)
+	copy(s4, s1) // copy 是数值的 copy，属于底层数组的副本
 	fmt.Println(s2)
 	s5[1] = 1000
 	fmt.Println(s1)

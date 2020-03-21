@@ -19,9 +19,12 @@ func adder2(x int) func(int) int {
 }
 
 func main() {
-	//为何不是 func(int)int ? 因为
+	//为何不是 func(int)int ?
 	ret := adder() // ret 是函数在内存的首地址
 	fmt.Printf("%T\n", ret)
-	ret2 := ret(200)  // 能够调用函数体外部的 x，除了返回函数，还犯了变量x
+	ret2 := ret(200)  // 能够调用函数体外部的 x，除了返回函数，还返回变量 x
 	fmt.Println(ret2) // x+y = 300
+	//
+	add2 := adder2(2)
+	fmt.Println(add2(2))
 }

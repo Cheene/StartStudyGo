@@ -5,7 +5,6 @@ import "fmt"
 //defer 栈
 /**
 比如 socket ， 数据库连接等用来释放资源的地方。先通过 defer 释放资源
-
 */
 
 func deferDemo() {

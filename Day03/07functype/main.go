@@ -19,6 +19,7 @@ func f3(x func()) {
 	x()
 }
 
+// f4 的形参是  func() int 类型
 func f4(x func() int) {
 	x()
 }

@@ -24,6 +24,11 @@ func main() {
 
 	//回文数的判断，字符串的逆转与字符串相等
 	s2 := "上海自来水来自海上"
+	/*
+		1 将字符串转换成 切片
+			for + append
+		**/
+
 	//字符串转换成切片
 	r := make([]rune, 0, len(s2))
 	for _, c := range s2 {
@@ -41,5 +46,4 @@ func main() {
 	}
 	fmt.Println(r) // 中文占三个字节
 	fmt.Println(flag)
-
 }
