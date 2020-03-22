@@ -1,19 +1,24 @@
 package main
 
 import (
+	"../proto"
+	"bufio"
 	"fmt"
+	"io"
 	"net"
 )
 
 //处理并发
 func processConn(conn net.Conn) {
-	var temp [128]byte
+	defer conn.Close()
+	reader := bufio.NewReader(conn)
 	for {
-		n, err := conn.Read(temp[:])
-		if err != nil {
-			fmt.Println("read failed: ", err)
+		msg, err := proto.Decode(reader)
+		//已经读到文件的结尾处
+		if err == io.EOF {
+			break
 		}
-		fmt.Println(string(temp[:n]))
+		fmt.Println(msg)
 	}
 
 }

@@ -1,19 +1,25 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"io"
 	"net"
 )
 
 //处理并发
 func processConn(conn net.Conn) {
-	var temp [128]byte
+	defer conn.Close()
+	reader := bufio.NewReader(conn)
+	var buf [1024]byte
+
 	for {
-		n, err := conn.Read(temp[:])
-		if err != nil {
-			fmt.Println("read failed: ", err)
+		n, err := reader.Read(buf[:])
+		//已经读到文件的结尾处
+		if err == io.EOF {
+			break
 		}
-		fmt.Println(string(temp[:n]))
+		fmt.Println(string(buf[:n]))
 	}
 
 }
