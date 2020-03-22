@@ -79,6 +79,7 @@ go
 
 ### sync包
 
+* sync.Once 标志位保证只能执行一次
 ### context
 
 ### 网络编程
