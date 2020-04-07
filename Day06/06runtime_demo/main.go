@@ -17,8 +17,8 @@ func f1() {
 	funcName := runtime.FuncForPC(pc).Name()
 	fmt.Println(funcName)
 	//获取文件的名称
-	fmt.Println(path.Base(file)) // main.go
-	fmt.Println(file)            //D:/StartStudyGo/Day06/06runtime_demo/main.go
+	fmt.Println(path.Base(file)) // split.go
+	fmt.Println(file)            //D:/StartStudyGo/Day06/06runtime_demo/split.go
 	fmt.Println(line)
 }
 func f() {

@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	fileObj, err := os.Open("./main.go")
+	fileObj, err := os.Open("./split.go")
 
 	if err != nil {
 		fmt.Printf("ERR: %d\n", fileObj)

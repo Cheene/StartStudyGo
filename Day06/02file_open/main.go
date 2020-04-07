@@ -7,7 +7,7 @@ import (
 )
 
 func f1() {
-	fileObj, err := os.Open("./main.go")
+	fileObj, err := os.Open("./split.go")
 	//defer fileObj.Close() // 当 error有数值的时候，fileObj 就是 nil
 	// 下面遇到return的时候，会继续执行 fileObj.Close()
 	if err != nil {

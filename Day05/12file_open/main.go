@@ -48,7 +48,7 @@ func readFormFileBufio(file *os.File) {
 }
 func readFromFileByIOUtil() {
 
-	ret, err := ioutil.ReadFile("./main.go")
+	ret, err := ioutil.ReadFile("./split.go")
 	if err != nil {
 		fmt.Printf("%v", err)
 	}
