@@ -2,7 +2,9 @@
 
 package split
 
-import "strings"
+import (
+	"strings"
+)
 
 // split package with a single split function.
 
@@ -11,6 +13,7 @@ import "strings"
 func Split(s, sep string) (ret []string) {
 	// sep 在那个位置
 	// 按 b 进行切割
+	ret = make([]string, 0, strings.Count(s, sep)+1)
 	index := strings.Index(s, sep)
 	for index > -1 {
 		ret = append(ret, s[:index])
